@@ -10,8 +10,8 @@
     <url>https://github.com/Nepxion/</url>
 
     <modules>
-        <module>skeleton-generator</module>
-        <module>skeleton-generator-spring-cloud</module>
+        <module>skeleton-engine</module>
+        <module>skeleton-spring-cloud</module>
     </modules>
 
     <properties>
@@ -32,13 +32,13 @@
         <dependencies>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>skeleton-generator</artifactId>
+                <artifactId>skeleton-engine</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>skeleton-generator-spring-cloud</artifactId>
+                <artifactId>skeleton-spring-cloud</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
