@@ -1,4 +1,4 @@
-package com.nepxion.skeleton.test;
+package com.nepxion.skeleton.generator;
 
 /**
  * <p>Title: Nepxion Skeleton</p>
@@ -10,10 +10,9 @@ package com.nepxion.skeleton.test;
  * @version 1.0
  */
 
-import com.nepxion.skeleton.generator.GeneratorService;
 import com.nepxion.skeleton.property.SkeletonProperties;
 
-public class GeneratorTest {
+public class SkeletonTest {
     public static void main(String[] args) {
         try {
             // 创建文件的输出的路径
@@ -35,8 +34,8 @@ public class GeneratorTest {
             SkeletonProperties skeletonProperties = new SkeletonProperties(propertiesPath);
 
             // 输出脚手架文件
-            GeneratorService generatorService = new GeneratorService();
-            generatorService.generator(generatePath, prefixTemplateDirectory, reducedTemplateDirectory, skeletonProperties);
+            SkeletonService skeletonService = new SkeletonService();
+            skeletonService.generator(generatePath, prefixTemplateDirectory, reducedTemplateDirectory, skeletonProperties);
         } catch (Exception e) {
             e.printStackTrace();
         }
