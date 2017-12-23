@@ -14,10 +14,12 @@
 ![Alt text](https://github.com/Nepxion/Skeleton/blob/master/Swagger.jpg)
 
 ## 配置文件使用规则
-    1. skeleton-data.properties
-       用来描述模板文件的全局配置值，里面的值替换模板文件里的动态变量(用${}表示)
-    2. skeleton-description.xml
-       用来描述模界面驱动和渲染的组件，分为Group和Entity结构，一个Group包含多个Entity，其他属性比较容易理解，主要介绍如下
+    1. skeleton-data.properties，见skeleton-spring-cloud/src/main/resources/config下
+       用来描述模板文件的全局配置值，里面的值替换模板文件里的动态变量(用${}表示)，脚手架生成需要依赖这个文件
+
+    2. skeleton-description.xml，见skeleton-spring-cloud/src/main/resources/config下
+       用来描述模界面驱动的数据结构，渲染和布局组件，它里面定义的组件里的value值则取值于skeleton-data.properties
+       分为Group和Entity结构，一个Group包含多个Entity，其他属性比较容易理解，主要介绍如下
        highlightable - 标识为高亮项，一般组件渲染成高亮方式，例如Label红色字体，提示使用者着重关注
        defaultable - 标识为默认项，一般组件渲染成默认项方式，提示使用者可以不修改对应值
        emptiable - 标识为留空项，一般组件渲染成留空项方式，提示使用者对应值可以为空
@@ -47,13 +49,17 @@ package com.nepxion.skeleton.generator;
  * @version 1.0
  */
 
+import com.nepxion.skeleton.constant.SkeletonConstant;
 import com.nepxion.skeleton.property.SkeletonProperties;
+import com.nepxion.skeleton.util.SkeletonUtil;
 
 public class SkeletonTest {
     public static void main(String[] args) {
         try {
             // 创建文件的输出的路径
-            String generatePath = "E:/Download/Skeleton/";
+            // 放在操作系统的临时目录下
+            String generatePath = SkeletonUtil.getTempGeneratePath();
+            // String generatePath = "E:/Download/skeleton/";
 
             // 如果prefixTemplateDirectory和reducedTemplateDirectory同时为null，那么Generator类目录和Template目录必须完全一致
             // 模板文件所在的前置目录名
@@ -65,10 +71,11 @@ public class SkeletonTest {
             // String reducedTemplateDirectory = null;
 
             // 描述规则的配置文件所在的路径
+            // 配置文件含中文，stringEncoding必须为GBK，readerEncoding必须为UTF-8，文本文件编码必须为ANSI
             String propertiesPath = "config/skeleton-data.properties";
 
             // 构造全局配置文件对象
-            SkeletonProperties skeletonProperties = new SkeletonProperties(propertiesPath);
+            SkeletonProperties skeletonProperties = new SkeletonProperties(propertiesPath, SkeletonConstant.ENCODING_GBK, SkeletonConstant.ENCODING_UTF_8);
 
             // 输出脚手架文件
             SkeletonService skeletonService = new SkeletonService();
@@ -79,6 +86,7 @@ public class SkeletonTest {
     }
 }
 ```
+
 ## Spring Cloud使用方式
 
 ### Spring Cloud配置文件(application.properties)
@@ -102,8 +110,8 @@ skeleton.prefix.template.directory=template
 skeleton.reduced.template.directory=com/nepxion/skeleton/generator/
 # 在前端下载zip包名
 skeleton.generate.file.name=spring-cloud-skeleton
-# 在前端下载zip包名
-skeleton.generate.path=E:/Download/Skeleton/
+# 在后端生成zip包的放置目录，不设置则放在操作系统的临时目录下
+skeleton.generate.path=
 
 # Swagger config
 swagger.service.base.package=com.nepxion.skeleton
@@ -127,8 +135,8 @@ swagger.service.contact.email=1394997@qq.com
         "key": "project", // 组所对应的唯一Key
         "label": "工程配置", // 组的标签
         "description": "工程配置", // 组的描述
-		"type": "MIX_GROUP", // 组的类型，包括MIX_GROUP(默认，组里可以放任何种类的组件，混合组)，CHECKBOX_GROUP(组里只能放CHECKBOX)，RADIO_GROUP(组里只能放RADIO)，COMBOBOX_GROUP(组里只能放COMBOBOX)
-		"layout": "VERTICAL", // 组的布局，包括VERTICAL(默认，组里组件以垂直方向布局)，HORIZONTAL(默认，组里组件以水平方向布局)
+        "type": "MIX_GROUP", // 组的类型，包括MIX_GROUP(默认，组里可以放任何种类的组件，混合组)，CHECKBOX_GROUP(组里只能放CHECKBOX)，RADIO_GROUP(组里只能放RADIO)，COMBOBOX_GROUP(组里只能放COMBOBOX)
+        "layout": "VERTICAL", // 组的布局，包括VERTICAL(默认，组里组件以垂直方向布局)，HORIZONTAL(默认，组里组件以水平方向布局)
         "entityList": [
           {
             "key": "moduleName", // 组件所对应的唯一Key

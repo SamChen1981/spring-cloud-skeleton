@@ -10,13 +10,17 @@ package com.nepxion.skeleton.generator;
  * @version 1.0
  */
 
+import com.nepxion.skeleton.constant.SkeletonConstant;
 import com.nepxion.skeleton.property.SkeletonProperties;
+import com.nepxion.skeleton.util.SkeletonUtil;
 
 public class SkeletonTest {
     public static void main(String[] args) {
         try {
             // 创建文件的输出的路径
-            String generatePath = "E:/Download/Skeleton/";
+            // 放在操作系统的临时目录下
+            String generatePath = SkeletonUtil.getTempGeneratePath();
+            // String generatePath = "E:/Download/skeleton/";
 
             // 如果prefixTemplateDirectory和reducedTemplateDirectory同时为null，那么Generator类目录和Template目录必须完全一致
             // 模板文件所在的前置目录名
@@ -28,10 +32,11 @@ public class SkeletonTest {
             // String reducedTemplateDirectory = null;
 
             // 描述规则的配置文件所在的路径
+            // 配置文件含中文，stringEncoding必须为GBK，readerEncoding必须为UTF-8，文本文件编码必须为ANSI
             String propertiesPath = "config/skeleton-data.properties";
 
             // 构造全局配置文件对象
-            SkeletonProperties skeletonProperties = new SkeletonProperties(propertiesPath);
+            SkeletonProperties skeletonProperties = new SkeletonProperties(propertiesPath, SkeletonConstant.ENCODING_GBK, SkeletonConstant.ENCODING_UTF_8);
 
             // 输出脚手架文件
             SkeletonService skeletonService = new SkeletonService();

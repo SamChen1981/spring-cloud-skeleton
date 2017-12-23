@@ -15,7 +15,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
-import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.DocumentException;
 import org.slf4j.Logger;
@@ -39,10 +38,7 @@ public class SkeletonConfigTransport {
 
     public SkeletonConfigTransport() {
         try {
-            skeletonDataProperties = new SkeletonProperties(SKELETON_DATA_FILE, SkeletonConstant.ENCODING_UTF_8);
-        } catch (ConfigurationException e) {
-            LOG.error("Parse properties failed", e);
-            e.printStackTrace();
+            skeletonDataProperties = new SkeletonProperties(SKELETON_DATA_FILE, SkeletonConstant.ENCODING_GBK, SkeletonConstant.ENCODING_UTF_8);
         } catch (IOException e) {
             LOG.error("Parse properties failed", e);
             e.printStackTrace();
@@ -66,7 +62,7 @@ public class SkeletonConfigTransport {
         }
 
         try {
-            return new SkeletonProperties(new StringBuilder(config), SkeletonConstant.ENCODING_UTF_8);
+            return new SkeletonProperties(config, SkeletonConstant.ENCODING_UTF_8);
         } catch (Exception e) {
             throw new SkeletonException(e.getMessage(), e);
         }
