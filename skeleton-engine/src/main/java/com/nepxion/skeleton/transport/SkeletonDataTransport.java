@@ -13,6 +13,8 @@ package com.nepxion.skeleton.transport;
 import java.io.File;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.nepxion.skeleton.exception.SkeletonException;
 import com.nepxion.skeleton.property.SkeletonProperties;
@@ -21,22 +23,26 @@ import com.nepxion.skeleton.util.SkeletonUtil;
 import com.nepxion.skeleton.util.ZipUtil;
 
 public abstract class SkeletonDataTransport {
-    public byte[] download(String generatePath, String directoryName, SkeletonProperties skeletonProperties) {
+    private static final Logger LOG = LoggerFactory.getLogger(SkeletonDataTransport.class);
+
+    public byte[] download(String generatePath, String fileName, SkeletonProperties skeletonProperties) {
         if (StringUtils.isEmpty(generatePath)) {
             generatePath = SkeletonUtil.getTempGeneratePath();
         }
 
-        if (StringUtils.isEmpty(directoryName)) {
-            throw new SkeletonException("Directory name is null or empty");
+        if (StringUtils.isEmpty(fileName)) {
+            throw new SkeletonException("File name is null or empty");
         }
 
         try {
-            String path = SkeletonUtil.getCanonicalPath(generatePath, directoryName, skeletonProperties);
+            String canonicalPath = SkeletonUtil.getCanonicalPath(generatePath, fileName, skeletonProperties);
 
-            generate(path, skeletonProperties);
+            generate(canonicalPath, skeletonProperties);
 
-            String zipFilePath = ZipUtil.zip(path, null);
+            String zipFilePath = ZipUtil.zip(canonicalPath, null);
             File zipFile = new File(zipFilePath);
+
+            LOG.info("Download skeleton file for " + zipFile.getName() + " is executed");
 
             return FileUtil.getBytes(zipFile);
         } catch (Exception e) {
