@@ -1,4 +1,4 @@
-package com.nepxion.skeleton.springcloud.generator.server;
+package com.nepxion.skeleton.springcloud.generator.eureka;
 
 /**
  * <p>Title: Nepxion Skeleton</p>
@@ -15,7 +15,6 @@ import java.util.Map;
 
 import com.nepxion.skeleton.engine.generator.SkeletonFileGenerator;
 import com.nepxion.skeleton.engine.property.SkeletonProperties;
-import com.nepxion.skeleton.engine.util.SkeletonUtil;
 import com.nepxion.skeleton.engine.util.StringUtil;
 
 public class PomXmlGenerator extends SkeletonFileGenerator {
@@ -41,7 +40,6 @@ public class PomXmlGenerator extends SkeletonFileGenerator {
         dataModel.put("pomArtifactId", skeletonProperties.getString("pomArtifactId") + "-" + getSkeletonContext().getProjectType());
         dataModel.put("pomName", skeletonProperties.getString("pomName") + " " + StringUtil.firstLetterToUpper(getSkeletonContext().getProjectType()));
         dataModel.put("pomVersion", skeletonProperties.getString("pomVersion"));
-        dataModel.put("mainClass", SkeletonUtil.getBasePackagePath(getSkeletonContext().getProjectType(), skeletonProperties) + ".ServerApplication");
 
         return dataModel;
     }

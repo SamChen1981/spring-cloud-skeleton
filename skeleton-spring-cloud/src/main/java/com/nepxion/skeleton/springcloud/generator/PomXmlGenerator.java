@@ -1,4 +1,4 @@
-package com.nepxion.skeleton.springcloud.generator.server;
+package com.nepxion.skeleton.springcloud.generator;
 
 /**
  * <p>Title: Nepxion Skeleton</p>
@@ -15,8 +15,6 @@ import java.util.Map;
 
 import com.nepxion.skeleton.engine.generator.SkeletonFileGenerator;
 import com.nepxion.skeleton.engine.property.SkeletonProperties;
-import com.nepxion.skeleton.engine.util.SkeletonUtil;
-import com.nepxion.skeleton.engine.util.StringUtil;
 
 public class PomXmlGenerator extends SkeletonFileGenerator {
     public PomXmlGenerator(String generatePath, String projectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
@@ -36,12 +34,14 @@ public class PomXmlGenerator extends SkeletonFileGenerator {
     @Override
     protected Object getDataModel() {
         Map<String, Object> dataModel = new HashMap<String, Object>();
-        dataModel.put("parentPomArtifactId", skeletonProperties.getString("pomArtifactId"));
         dataModel.put("pomGroupId", skeletonProperties.getString("pomGroupId"));
-        dataModel.put("pomArtifactId", skeletonProperties.getString("pomArtifactId") + "-" + getSkeletonContext().getProjectType());
-        dataModel.put("pomName", skeletonProperties.getString("pomName") + " " + StringUtil.firstLetterToUpper(getSkeletonContext().getProjectType()));
+        dataModel.put("pomArtifactId", skeletonProperties.getString("pomArtifactId"));
+        dataModel.put("pomName", skeletonProperties.getString("pomName"));
         dataModel.put("pomVersion", skeletonProperties.getString("pomVersion"));
-        dataModel.put("mainClass", SkeletonUtil.getBasePackagePath(getSkeletonContext().getProjectType(), skeletonProperties) + ".ServerApplication");
+        dataModel.put("springCloudVersion", skeletonProperties.getString("springCloudVersion"));
+        dataModel.put("springBootVersion", skeletonProperties.getString("springBootVersion"));
+        dataModel.put("javaVersion", skeletonProperties.getString("javaVersion"));
+        dataModel.put("moduleName", skeletonProperties.getString("moduleName"));
 
         return dataModel;
     }

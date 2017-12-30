@@ -1,4 +1,4 @@
-package com.nepxion.skeleton.springcloud.generator.server.resources;
+package com.nepxion.skeleton.springcloud.generator.eureka.resources;
 
 /**
  * <p>Title: Nepxion Skeleton</p>

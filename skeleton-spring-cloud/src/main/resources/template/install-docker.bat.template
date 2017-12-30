@@ -15,13 +15,15 @@
 @title Nepxion Skeleton
 @color 0a
 
-@set PROJECT_NAME=skeleton-spring-cloud
+@set PROJECT_NAME=${projectName}
 
-@set DOCKER_HOST=tcp://localhost:2375
-@rem @set DOCKER_CERT_PATH=C:\Users\Neptune\.docker\machine\certs
-@set IMAGE_NAME=skeleton-spring-cloud
-@set MACHINE_PORT=2222
-@set CONTAINER_PORT=2222
+@set DOCKER_HOST=${dockerHost}
+<#if dockerCertEnabled == "true">
+@set DOCKER_CERT_PATH=${dockerCertPath}
+</#if>
+@set IMAGE_NAME=${imageName}
+@set MACHINE_PORT=${port}
+@set CONTAINER_PORT=${port}
 
 if exist %PROJECT_NAME%\target rmdir /s/q %PROJECT_NAME%\target
 

@@ -17,31 +17,35 @@ import com.nepxion.skeleton.engine.constant.SkeletonConstant;
 import com.nepxion.skeleton.engine.generator.SkeletonJavaGenerator;
 import com.nepxion.skeleton.engine.property.SkeletonProperties;
 
-public class TestServerApplicationClassGenerator extends SkeletonJavaGenerator {
-    public TestServerApplicationClassGenerator(String generatePath, String projectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
-        super(generatePath, projectType, prefixTemplateDirectory, reducedTemplateDirectory, TestServerApplicationClassGenerator.class, skeletonProperties);
+public class ServerControllerClassGenerator extends SkeletonJavaGenerator {
+    public ServerControllerClassGenerator(String generatePath, String projectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
+        super(generatePath, projectType, prefixTemplateDirectory, reducedTemplateDirectory, ServerControllerClassGenerator.class, skeletonProperties);
+    }
+
+    @Override
+    protected String getPackage() {
+        return super.getPackage() + ".controller";
     }
 
     @Override
     protected String getClassName() {
-        return "TestServerApplication";
+        return "ServerController";
     }
 
     @Override
     protected String getTemplateName() {
-        return "TestServerApplication.java.template";
+        return "ServerController.java.template";
     }
 
     @Override
     protected boolean isMainCode() {
-        return false;
+        return true;
     }
 
     @Override
     protected Object getDataModel() {
         Map<String, Object> dataModel = new HashMap<String, Object>();
         dataModel.put(SkeletonConstant.PACKAGE, getPackage());
-        dataModel.put("eurekaEnabled", skeletonProperties.getString("eurekaEnabled"));
 
         return dataModel;
     }

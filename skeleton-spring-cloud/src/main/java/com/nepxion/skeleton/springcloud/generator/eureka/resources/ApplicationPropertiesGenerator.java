@@ -1,4 +1,4 @@
-package com.nepxion.skeleton.springcloud.generator.server.resources;
+package com.nepxion.skeleton.springcloud.generator.eureka.resources;
 
 /**
  * <p>Title: Nepxion Skeleton</p>
@@ -17,19 +17,19 @@ import com.nepxion.skeleton.engine.constant.SkeletonConstant;
 import com.nepxion.skeleton.engine.generator.SkeletonFileGenerator;
 import com.nepxion.skeleton.engine.property.SkeletonProperties;
 
-public class LogbackXmlGenerator extends SkeletonFileGenerator {
-    public LogbackXmlGenerator(String generatePath, String projectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
-        super(generatePath, projectType, prefixTemplateDirectory, reducedTemplateDirectory, LogbackXmlGenerator.class, skeletonProperties);
+public class ApplicationPropertiesGenerator extends SkeletonFileGenerator {
+    public ApplicationPropertiesGenerator(String generatePath, String projectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
+        super(generatePath, projectType, prefixTemplateDirectory, reducedTemplateDirectory, ApplicationPropertiesGenerator.class, skeletonProperties);
     }
 
     @Override
     protected String getFileName() {
-        return "logback.xml";
+        return "application.properties";
     }
 
     @Override
     protected String getTemplateName() {
-        return "logback.xml.template";
+        return "application.properties.template";
     }
 
     @Override
@@ -40,7 +40,9 @@ public class LogbackXmlGenerator extends SkeletonFileGenerator {
     @Override
     protected Object getDataModel() {
         Map<String, Object> dataModel = new HashMap<String, Object>();
-        dataModel.put("serviceName", skeletonProperties.getString("serviceName"));
+        dataModel.put("serviceName", skeletonProperties.getString("serviceName") + "-eureka");
+        dataModel.put("port", skeletonProperties.getString("eurekaPort"));
+        dataModel.put("eurekaUrl", skeletonProperties.getString("eurekaUrl"));
 
         return dataModel;
     }
