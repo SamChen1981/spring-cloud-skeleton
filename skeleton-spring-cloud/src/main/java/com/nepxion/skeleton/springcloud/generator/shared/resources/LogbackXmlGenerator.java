@@ -1,4 +1,4 @@
-package com.nepxion.skeleton.springcloud.generator.server.resources;
+package com.nepxion.skeleton.springcloud.generator.shared.resources;
 
 /**
  * <p>Title: Nepxion Skeleton</p>
@@ -18,8 +18,8 @@ import com.nepxion.skeleton.engine.generator.SkeletonFileGenerator;
 import com.nepxion.skeleton.engine.property.SkeletonProperties;
 
 public class LogbackXmlGenerator extends SkeletonFileGenerator {
-    public LogbackXmlGenerator(String generatePath, String projectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
-        super(generatePath, projectType, prefixTemplateDirectory, reducedTemplateDirectory, LogbackXmlGenerator.class, skeletonProperties);
+    public LogbackXmlGenerator(String generatePath, String projectType, String prefixTemplatePath, String reducedTemplatePath, SkeletonProperties skeletonProperties) {
+        super(generatePath, projectType, prefixTemplatePath, reducedTemplatePath, LogbackXmlGenerator.class, skeletonProperties);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class LogbackXmlGenerator extends SkeletonFileGenerator {
     @Override
     protected Object getDataModel() {
         Map<String, Object> dataModel = new HashMap<String, Object>();
-        dataModel.put("serviceName", skeletonProperties.getString("serviceName"));
+        dataModel.put("serviceName", skeletonProperties.getString("serviceName") + "-" + getSkeletonContext().getProjectType());
 
         return dataModel;
     }

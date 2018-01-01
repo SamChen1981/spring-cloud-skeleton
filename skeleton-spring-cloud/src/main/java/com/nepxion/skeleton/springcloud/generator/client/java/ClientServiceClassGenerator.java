@@ -1,4 +1,4 @@
-package com.nepxion.skeleton.springcloud.generator.server.java;
+package com.nepxion.skeleton.springcloud.generator.client.java;
 
 /**
  * <p>Title: Nepxion Skeleton</p>
@@ -17,24 +17,24 @@ import com.nepxion.skeleton.engine.constant.SkeletonConstant;
 import com.nepxion.skeleton.engine.generator.SkeletonJavaGenerator;
 import com.nepxion.skeleton.engine.property.SkeletonProperties;
 
-public class ServerWebConfigClassGenerator extends SkeletonJavaGenerator {
-    public ServerWebConfigClassGenerator(String generatePath, String projectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
-        super(generatePath, projectType, prefixTemplateDirectory, reducedTemplateDirectory, ServerWebConfigClassGenerator.class, skeletonProperties);
+public class ClientServiceClassGenerator extends SkeletonJavaGenerator {
+    public ClientServiceClassGenerator(String generatePath, String projectType, String prefixTemplatePath, String reducedTemplatePath, SkeletonProperties skeletonProperties) {
+        super(generatePath, projectType, prefixTemplatePath, reducedTemplatePath, ClientServiceClassGenerator.class, skeletonProperties);
     }
 
     @Override
     protected String getPackage() {
-        return super.getPackage() + ".config";
+        return super.getPackage() + ".service";
     }
 
     @Override
     protected String getClassName() {
-        return "ServerWebConfig";
+        return "ClientService";
     }
 
     @Override
     protected String getTemplateName() {
-        return "ServerWebConfig.java.template";
+        return "ClientService.java.template";
     }
 
     @Override

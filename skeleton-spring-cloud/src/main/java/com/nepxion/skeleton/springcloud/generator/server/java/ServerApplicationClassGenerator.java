@@ -22,19 +22,19 @@ public class ServerApplicationClassGenerator extends SkeletonJavaGenerator {
      * 构造方法
      * @param generatePath 创建文件的顶级路径
      * @param projectType 工程类型
-     * @param prefixTemplateDirectory 前置模板目录名，例如template
-     * @param reducedTemplateDirectory 模板目录缩减，考虑到模板目录和类目录必须一致，会导致目录目录太长，可以缩减掉一部分
+     * @param prefixTemplatePath 前置模板路径，例如template
+     * @param reducedTemplatePath 模板路径缩减，考虑到模板路径和类路径必须一致，会导致路径太长，可以缩减掉一部分
      * @param skeletonProperties 全局配置文件对象
      */
-    public ServerApplicationClassGenerator(String generatePath, String projectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
-        super(generatePath, projectType, prefixTemplateDirectory, reducedTemplateDirectory, ServerApplicationClassGenerator.class, skeletonProperties);
+    public ServerApplicationClassGenerator(String generatePath, String projectType, String prefixTemplatePath, String reducedTemplatePath, SkeletonProperties skeletonProperties) {
+        super(generatePath, projectType, prefixTemplatePath, reducedTemplatePath, ServerApplicationClassGenerator.class, skeletonProperties);
     }
 
     /**
      * 构造方法
      * @param generatePath 创建文件的顶级路径
      * @param projectType 工程类型
-     * @param baseTemplatePath 模板文件的等级路径
+     * @param baseTemplatePath 模板文件的顶级路径
      * @param skeletonProperties 全局配置文件对象
      */
     /*public ServerApplicationClassGenerator(String generatePath, String projectType, String baseTemplatePath, SkeletonProperties skeletonProperties) {
@@ -89,7 +89,6 @@ public class ServerApplicationClassGenerator extends SkeletonJavaGenerator {
         Map<String, Object> dataModel = new HashMap<String, Object>();
         // 注意：根据freemarker的规范，dataModel中的key似乎只能支持字母和数字，不支持符号，例如eureka.Enabled，eureka-Enabled都会抛错
         dataModel.put(SkeletonConstant.PACKAGE, getPackage());
-        dataModel.put("eurekaEnabled", skeletonProperties.getString("eurekaEnabled"));
 
         return dataModel;
     }

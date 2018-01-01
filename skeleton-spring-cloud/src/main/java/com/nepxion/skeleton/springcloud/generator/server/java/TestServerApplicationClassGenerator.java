@@ -18,8 +18,8 @@ import com.nepxion.skeleton.engine.generator.SkeletonJavaGenerator;
 import com.nepxion.skeleton.engine.property.SkeletonProperties;
 
 public class TestServerApplicationClassGenerator extends SkeletonJavaGenerator {
-    public TestServerApplicationClassGenerator(String generatePath, String projectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
-        super(generatePath, projectType, prefixTemplateDirectory, reducedTemplateDirectory, TestServerApplicationClassGenerator.class, skeletonProperties);
+    public TestServerApplicationClassGenerator(String generatePath, String projectType, String prefixTemplatePath, String reducedTemplatePath, SkeletonProperties skeletonProperties) {
+        super(generatePath, projectType, prefixTemplatePath, reducedTemplatePath, TestServerApplicationClassGenerator.class, skeletonProperties);
     }
 
     @Override
@@ -41,7 +41,6 @@ public class TestServerApplicationClassGenerator extends SkeletonJavaGenerator {
     protected Object getDataModel() {
         Map<String, Object> dataModel = new HashMap<String, Object>();
         dataModel.put(SkeletonConstant.PACKAGE, getPackage());
-        dataModel.put("eurekaEnabled", skeletonProperties.getString("eurekaEnabled"));
 
         return dataModel;
     }

@@ -18,8 +18,8 @@ import com.nepxion.skeleton.engine.generator.SkeletonFileGenerator;
 import com.nepxion.skeleton.engine.property.SkeletonProperties;
 
 public class ApplicationPropertiesGenerator extends SkeletonFileGenerator {
-    public ApplicationPropertiesGenerator(String generatePath, String projectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
-        super(generatePath, projectType, prefixTemplateDirectory, reducedTemplateDirectory, ApplicationPropertiesGenerator.class, skeletonProperties);
+    public ApplicationPropertiesGenerator(String generatePath, String projectType, String prefixTemplatePath, String reducedTemplatePath, SkeletonProperties skeletonProperties) {
+        super(generatePath, projectType, prefixTemplatePath, reducedTemplatePath, ApplicationPropertiesGenerator.class, skeletonProperties);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ApplicationPropertiesGenerator extends SkeletonFileGenerator {
     @Override
     protected Object getDataModel() {
         Map<String, Object> dataModel = new HashMap<String, Object>();
-        dataModel.put("serviceName", skeletonProperties.getString("serviceName") + "-eureka");
+        dataModel.put("serviceName", skeletonProperties.getString("serviceName") + "-" + getSkeletonContext().getProjectType());
         dataModel.put("port", skeletonProperties.getString("eurekaPort"));
         dataModel.put("eurekaUrl", skeletonProperties.getString("eurekaUrl"));
 

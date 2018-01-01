@@ -19,8 +19,8 @@ import com.nepxion.skeleton.engine.util.SkeletonUtil;
 import com.nepxion.skeleton.engine.util.StringUtil;
 
 public class PomXmlGenerator extends SkeletonFileGenerator {
-    public PomXmlGenerator(String generatePath, String projectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
-        super(generatePath, projectType, prefixTemplateDirectory, reducedTemplateDirectory, PomXmlGenerator.class, skeletonProperties);
+    public PomXmlGenerator(String generatePath, String projectType, String prefixTemplatePath, String reducedTemplatePath, SkeletonProperties skeletonProperties) {
+        super(generatePath, projectType, prefixTemplatePath, reducedTemplatePath, PomXmlGenerator.class, skeletonProperties);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class PomXmlGenerator extends SkeletonFileGenerator {
         dataModel.put("pomArtifactId", skeletonProperties.getString("pomArtifactId") + "-" + getSkeletonContext().getProjectType());
         dataModel.put("pomName", skeletonProperties.getString("pomName") + " " + StringUtil.firstLetterToUpper(getSkeletonContext().getProjectType()));
         dataModel.put("pomVersion", skeletonProperties.getString("pomVersion"));
-        dataModel.put("mainClass", SkeletonUtil.getBasePackagePath(getSkeletonContext().getProjectType(), skeletonProperties) + ".ServerApplication");
+        dataModel.put("mainClass", SkeletonUtil.getBasePackagePath(getSkeletonContext().getProjectType(), skeletonProperties) + "." + StringUtil.firstLetterToUpper(getSkeletonContext().getProjectType()) + "Application");
 
         return dataModel;
     }

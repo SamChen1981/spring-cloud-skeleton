@@ -13,27 +13,33 @@ package com.nepxion.skeleton.springcloud.generator;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.nepxion.skeleton.engine.generator.SkeletonFileGenerator;
 import com.nepxion.skeleton.engine.property.SkeletonProperties;
 import com.nepxion.skeleton.engine.util.SkeletonUtil;
 
-public class InstallDockerShGenerator extends SkeletonFileGenerator {
+public class InstallDockerShellGenerator extends SkeletonFileGenerator {
     private String subProjectType;
+    private String shellType;
+    private String linkDocker;
 
-    public InstallDockerShGenerator(String generatePath, String projectType, String subProjectType, String prefixTemplateDirectory, String reducedTemplateDirectory, SkeletonProperties skeletonProperties) {
-        super(generatePath, projectType, prefixTemplateDirectory, reducedTemplateDirectory, InstallDockerShGenerator.class, skeletonProperties);
+    public InstallDockerShellGenerator(String generatePath, String projectType, String subProjectType, String shellType, String linkDocker, String prefixTemplatePath, String reducedTemplatePath, SkeletonProperties skeletonProperties) {
+        super(generatePath, projectType, prefixTemplatePath, reducedTemplatePath, InstallDockerShellGenerator.class, skeletonProperties);
 
         this.subProjectType = subProjectType;
+        this.shellType = shellType;
+        this.linkDocker = linkDocker;
     }
 
     @Override
     protected String getFileName() {
-        return "install-docker.sh";
+        return "install-" + subProjectType + "-docker." + shellType;
     }
 
     @Override
     protected String getTemplateName() {
-        return "install-docker.sh.template";
+        return "install-docker." + shellType + ".template";
     }
 
     @Override
@@ -43,8 +49,9 @@ public class InstallDockerShGenerator extends SkeletonFileGenerator {
         dataModel.put("dockerHost", skeletonProperties.getString("dockerHost"));
         dataModel.put("dockerCertPath", skeletonProperties.getString("dockerCertPath"));
         dataModel.put("dockerCertEnabled", skeletonProperties.getString("dockerCertEnabled"));
-        dataModel.put("imageName", skeletonProperties.getString("serviceName"));
-        dataModel.put("port", skeletonProperties.getString("port"));
+        dataModel.put("imageName", skeletonProperties.getString("serviceName") + "-" + subProjectType);
+        dataModel.put("port", skeletonProperties.getString(subProjectType + "Port"));
+        dataModel.put("linkDocker", StringUtils.isNotEmpty(linkDocker) ? linkDocker : "");
 
         return dataModel;
     }
