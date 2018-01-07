@@ -26,7 +26,7 @@ public abstract class SkeletonFileGenerator extends AbstractSkeletonGenerator {
 
     protected String defaultOutputPath;
 
-    public SkeletonFileGenerator( SkeletonContext skeletonContext, SkeletonProperties skeletonProperties) {
+    public SkeletonFileGenerator(SkeletonContext skeletonContext, SkeletonProperties skeletonProperties) {
         super(skeletonContext, skeletonProperties);
 
         initialize();
@@ -69,7 +69,7 @@ public abstract class SkeletonFileGenerator extends AbstractSkeletonGenerator {
             outputPath = getOutputPath();
             dataModel = getDataModel();
         } catch (Exception e) {
-            throw new SkeletonException("Get parameters error", e);
+            throw new SkeletonException(e.getMessage(), e);
         }
 
         String fullPath = SkeletonUtil.formatGeneratePath(outputPath) + fileName;
