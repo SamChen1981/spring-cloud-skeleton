@@ -1,4 +1,4 @@
-package com.nepxion.skeleton.plugin.springcloud.generator;
+package com.nepxion.skeleton.plugin.springcloud.generator.shared;
 
 /**
  * <p>Title: Nepxion Skeleton</p>
@@ -14,19 +14,19 @@ import com.nepxion.skeleton.engine.context.SkeletonContext;
 import com.nepxion.skeleton.engine.generator.SkeletonFileGenerator;
 import com.nepxion.skeleton.engine.property.SkeletonProperties;
 
-public class GitIgnoreGenerator extends SkeletonFileGenerator {
-    public GitIgnoreGenerator(SkeletonContext skeletonContext, SkeletonProperties skeletonProperties) {
-        super(skeletonContext.clone(null, GitIgnoreGenerator.class), skeletonProperties);
+public class GitAttributesGenerator extends SkeletonFileGenerator {
+    public GitAttributesGenerator(SkeletonContext skeletonContext, SkeletonProperties skeletonProperties, String projectType) {
+        super(skeletonContext.clone(projectType, GitAttributesGenerator.class), skeletonProperties);
     }
 
     @Override
     protected String getFileName() {
-        return ".gitignore";
+        return ".gitattributes";
     }
 
     @Override
     protected String getTemplateName() {
-        return "file.gitignore.template";
+        return "file.gitattributes.template";
     }
 
     @Override
