@@ -3,7 +3,7 @@ package com.nepxion.skeleton.engine.property;
 /**
  * <p>Title: Nepxion Skeleton</p>
  * <p>Description: Nepxion Skeleton For Freemarker</p>
- * <p>Copyright: Copyright (c) 2017-2020</p>
+ * <p>Copyright: Copyright (c) 2017-2050</p>
  * <p>Company: Nepxion</p>
  * @author Haojun Ren
  * @version 1.0
@@ -34,7 +34,7 @@ public class SkeletonProperties implements Serializable {
         System.out.println("╚══╗║╚╝╣║═╣║║║═╣║║║╔╗║╔╗╗");
         System.out.println("║╚═╝║╔╗╣║═╣╚╣║═╣║╚╣╚╝║║║║");
         System.out.println("╚═══╩╝╚╩══╩═╩══╝╚═╩══╩╝╚╝");
-        System.out.println("Nepxion Skeleton  v1.0.0.RELEASE");
+        System.out.println("Nepxion Skeleton  v1.0.2");
         System.out.println("");
     }
 

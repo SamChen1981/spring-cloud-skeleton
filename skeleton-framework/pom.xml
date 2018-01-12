@@ -5,16 +5,14 @@
     <name>Nepxion Skeleton Framework</name>
     <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
+    <description>Nepxion Skeleton is a generic codes and files generator based on freemaker for any text formats</description>
+    <url>http://www.nepxion.com</url>
+
     <parent>
         <groupId>com.nepxion</groupId>
         <artifactId>skeleton</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.2</version>
     </parent>
-
-    <properties>
-        <spring.version>4.3.13.RELEASE</spring.version>
-        <swagger.version>2.7.0</swagger.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -26,19 +24,16 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.version}</version>
         </dependency>
     </dependencies>
 </project>
