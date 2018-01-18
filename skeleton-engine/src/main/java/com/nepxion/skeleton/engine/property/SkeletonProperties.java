@@ -30,11 +30,11 @@ public class SkeletonProperties implements Serializable {
         System.out.println("");
         System.out.println("╔═══╦╗    ╔╗    ╔╗");
         System.out.println("║╔═╗║║    ║║   ╔╝╚╗");
-        System.out.println("║╚══╣║╔╦══╣║╔══╬╗╔╬══╦═╗");
-        System.out.println("╚══╗║╚╝╣║═╣║║║═╣║║║╔╗║╔╗╗");
+        System.out.println("║╚══╣║╔╦══╣║╔══╬╗╔╬══╦══╗");
+        System.out.println("╚══╗║╚╝╣║═╣║║║═╣║║║╔╗║╔╗║");
         System.out.println("║╚═╝║╔╗╣║═╣╚╣║═╣║╚╣╚╝║║║║");
         System.out.println("╚═══╩╝╚╩══╩═╩══╝╚═╩══╩╝╚╝");
-        System.out.println("Nepxion Skeleton  v1.0.2");
+        System.out.println("Nepxion Skeleton  v1.0.5");
         System.out.println("");
     }
 

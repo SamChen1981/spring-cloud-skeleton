@@ -32,7 +32,7 @@ export default {
 	},
 	data() {
 		return {
-			sysName: 'Spring Cloud Skeleton',
+			sysName: 'Spring Cloud 脚手架',
 			collapsed: false,
 			sysUserName: '',
 			sysUserAvatar: '',

@@ -12,7 +12,7 @@
                     <div class="form-group">
                       <label v-if="item.type != 'RADIO' && item.type != 'CHECKBOX'" class="col-sm-2 control-label">{{ item.label }}</label>
                       <div class="col-sm-8" v-if="item.type != 'RADIO' && item.type != 'CHECKBOX'">
-                        <input v-if="item.type == 'TEXTFIELD'" class="form-control" :name="item.key" :value="item.value" required>
+                        <input v-if="item.type == 'TEXTFIELD'" class="form-control" :name="item.key" v-model="modules[number].entityList[index].value" required>
                         <span v-if="item.highlightable && item.type == 'TEXTFIELD'" class="must-need">*</span>
                         <span v-if="item.note != '' && item.note != null && item.type == 'TEXTFIELD'" class="info-tip">
                           <el-tooltip class="item" effect="dark" placement="right">
@@ -24,12 +24,33 @@
                           <el-option v-if="item.type == 'COMBOBOX'" v-for="option in item.options" :key="number" :label="option" :value="option"></el-option>
                         </el-select>
                       </div>
-                      <div class="col-sm-10" v-if="item.type == 'CHECKBOX'">
+                      <div v-if="item.type == 'CHECKBOX'">
                         <label class="col-sm-2 control-label" style="margin-top: -7px;">{{ item.label }}</label>
-                        <div  :class="'col-sm-2'">
-                          <el-checkbox  :label="!item.value" :name="item.key" style="color:#666"></el-checkbox>
-                          <span v-if="!item.defaultable" class="recommend">（推荐）</span>
+                        <div class="col-sm-8">
+                          <div  :class="'col-sm-2'">
+                            <el-checkbox  :label="modules[number].entityList[index].value" :name="item.key" style="color:#666"></el-checkbox>
+                            <span v-if="!item.defaultable" class="recommend">（推荐）</span>
+                          </div>
                         </div>
+                      </div>
+                      <div v-if="item.type == 'RADIO'">
+                        <label class="col-sm-2 control-label">{{ item.label }}</label>
+                        <div class="col-sm-8">
+                          <div class="col-sm-2">
+                            <el-radio v-model="modules[number].entityList[index].value" :label="true" :name="item.key"> 是 </el-radio>
+                          </div>
+                          <div class="col-sm-2">
+                            <el-radio v-model="modules[number].entityList[index].value" :label="false" :name="item.key"> 否 </el-radio>
+                          </div>
+                          <span v-if="item.highlightable && item.type == 'RADIO'" class="must-need">*</span>
+                          <span v-if="item.note != '' && item.note != null && item.type == 'RADIO'" class="info-tip">
+                          <el-tooltip class="item" effect="dark" placement="right">
+                            <div slot="content" class="content-box">{{ item.note }}</div>
+                            <el-button class="el-icon-question"></el-button>
+                          </el-tooltip>
+                        </span>
+                        </div>
+
                       </div>
                     </div>
                   </transition>
@@ -286,18 +307,22 @@
         this.hrShow['basic-framework'] = false;
       },
       chkEntityList: function (list) {
-        if (list[0].type == 'CHECKBOX') {
-          for (var i in list) {
-            list[i].value = true;
-          }
-        }
-        if (list[0].type == 'COMBOBOX') {
-          for (var i in list) {
-            if (list[i].value == null) {
-              list[i].value = list[i].options[0];
+        for (var i in list) {
+          if (list[i].type == 'CHECKBOX' || list[i].type == 'RADIO') {
+            if (list[i].value == 'false') {
+              list[i].value = false;
+            } else {
+              list[i].value = true;
+            }
+          } else if (list[i].type == 'COMBOBOX') {
+            for (var i in list) {
+              if (list[i].value == null) {
+                list[i].value = list[i].options[0];
+              }
             }
           }
         }
+
         return list;
       },
       refresh: function () {
@@ -325,7 +350,7 @@
     font-size: 18px;
     color: #6DB345;
     position: absolute;
-    top: -6px;
+    top: -3px;
     right: -32px;
     border:none;
     width:32px;
